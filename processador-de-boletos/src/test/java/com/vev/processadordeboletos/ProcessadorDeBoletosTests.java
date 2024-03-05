@@ -32,15 +32,15 @@ class ProcessadorDeBoletosTests {
 
 	@Test
 	@DisplayName("Processa lista de boletos vazia")
-	void testRecebeListaBoletosVazia() {
+	void testProcessaListaBoletosVazia() {
 		List<Boleto> boletosVazio = new ArrayList<>();
 
-		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(boletosVazio, this.fatura.getId());
+		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(boletosVazio, this.fatura);
 
 		assertEquals(0, pagamentos.size());
 
 	}
-	
+
 	@Test
 	@DisplayName("Processa boletos valor < total da fatura")
 	void testProcessaListaBoletosMenorTotalFatura() {
