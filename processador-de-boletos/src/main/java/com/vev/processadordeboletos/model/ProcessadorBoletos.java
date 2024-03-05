@@ -10,7 +10,7 @@ public class ProcessadorBoletos {
         for (Boleto b : boletos) {
             soma += b.getValorPago();
         }
-        if (soma >= fatura.getValorTotal()) {
+        if (soma > fatura.getValorTotal()) {
             fatura.setPaga(true);
         }
         return new ArrayList<>();

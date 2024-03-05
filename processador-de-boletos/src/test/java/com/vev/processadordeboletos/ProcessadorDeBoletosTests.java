@@ -14,8 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ProcessadorDeBoletosTests {
@@ -57,4 +56,34 @@ class ProcessadorDeBoletosTests {
         assertFalse(this.fatura.isPaga());
 	}
 
+	@Test
+	@DisplayName("Processa boletos valor == total da fatura")
+	void testProcessaListaBoletosIgualTotalFatura() {
+		this.fatura.setValorTotal(1000.0);
+
+		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 500.0);
+		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 500.0);
+
+		this.boletos.add(boleto1);
+		this.boletos.add(boleto2);
+
+		processadorBoletos.processaBoletos(this.boletos, this.fatura);
+
+		assertFalse(this.fatura.isPaga());
+	}
+	@Test
+	@DisplayName("Processa boletos valor > total da fatura")
+	void testProcessaListaBoletosMaiorTotalFatura() {
+		this.fatura.setValorTotal(1000.0);
+
+		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 700.0);
+		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 5000.0);
+
+		this.boletos.add(boleto1);
+		this.boletos.add(boleto2);
+
+		processadorBoletos.processaBoletos(this.boletos, this.fatura);
+
+		assertTrue(this.fatura.isPaga());
+	}
 }
