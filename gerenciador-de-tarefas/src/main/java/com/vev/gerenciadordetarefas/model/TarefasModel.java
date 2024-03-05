@@ -22,6 +22,9 @@ public class TarefasModel {
             throw new IllegalArgumentException("Data de vencimento não pode ser nula!");
         }
         this.date = date;
+        if (priority == null) {
+            throw new IllegalArgumentException("Prioridade não pode ser nula!");
+        }
         this.priority = priority;
 
     }

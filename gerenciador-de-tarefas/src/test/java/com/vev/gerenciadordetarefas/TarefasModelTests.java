@@ -68,4 +68,12 @@ public class TarefasModelTests {
         assertEquals(result, tarefasModel.getPriority());
     }
 
+    @Test
+    public void testGetNullPriority() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> new TarefasModel("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), null));
+        assertEquals("Prioridade não pode ser nula!", thrown.getMessage());
+    }
+
 }
