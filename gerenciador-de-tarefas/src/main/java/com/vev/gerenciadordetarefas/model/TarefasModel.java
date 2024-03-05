@@ -49,4 +49,12 @@ public class TarefasModel {
         this.title = title;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
 }

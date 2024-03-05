@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.vev.gerenciadordetarefas.model.*;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 @RunWith(Suite.class)
 @SuiteClasses({})
@@ -80,6 +81,19 @@ public class TarefasModelTests {
     public void testSetTitle() {
         tarefasModel.setTitle("Quiz de percepção computacional");
         assertEquals("Quiz de percepção computacional", tarefasModel.getTitle());
+    }
+
+    @Test
+    public void testSetDescription() {
+        tarefasModel.setDescription("Responder quiz da aula 7");
+        assertEquals("Responder quiz da aula 7", tarefasModel.getDescription());
+    }
+
+    @Test
+    public void testSetDate() {
+        LocalDate date = LocalDate.of(2020, Month.JANUARY, 8);
+        tarefasModel.setDate(date);
+        assertEquals(date, tarefasModel.getDate());
     }
 
 }
