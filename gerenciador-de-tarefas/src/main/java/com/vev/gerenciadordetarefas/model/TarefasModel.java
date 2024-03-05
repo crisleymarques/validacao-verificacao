@@ -45,4 +45,8 @@ public class TarefasModel {
         return this.priority;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 }

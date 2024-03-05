@@ -76,4 +76,10 @@ public class TarefasModelTests {
         assertEquals("Prioridade não pode ser nula!", thrown.getMessage());
     }
 
+    @Test
+    public void testSetTitle() {
+        tarefasModel.setTitle("Quiz de percepção computacional");
+        assertEquals("Quiz de percepção computacional", tarefasModel.getTitle());
+    }
+
 }
