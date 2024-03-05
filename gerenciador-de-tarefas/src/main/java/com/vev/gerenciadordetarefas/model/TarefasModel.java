@@ -10,6 +10,9 @@ public class TarefasModel {
             throw new IllegalArgumentException("Título não pode ser nulo!");
         }
         this.title = title;
+        if (description == null) {
+            throw new IllegalArgumentException("Descrição não pode ser nula!");
+        }
         this.description = description;
 
     }

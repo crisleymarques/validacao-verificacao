@@ -40,4 +40,12 @@ public class TarefasModelTests {
         assertEquals("Responder quiz da aula 6", tarefasModel.getDescription());
     }
 
+    @Test
+    public void testGetNullDescription() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> new TarefasModel("Quiz de VeV", null));
+        assertEquals("Descrição não pode ser nula!", thrown.getMessage());
+    }
+
 }
