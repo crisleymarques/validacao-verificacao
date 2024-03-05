@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 import com.vev.gerenciadordetarefas.model.TarefasModel;
 
@@ -24,6 +25,14 @@ public class TarefasModelTests {
     @Test
     public void testGetTitle() {
         assertEquals("Quiz de VeV", tarefasModel.getTitle());
+    }
+
+    @Test
+    public void testGetNullTitle() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> new TarefasModel(null));
+        assertEquals("Título não pode ser nulo!", thrown.getMessage());
     }
 
 }
