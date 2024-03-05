@@ -54,4 +54,12 @@ public class TarefasModelTests {
         assertEquals(LocalDate.now(), tarefasModel.getDate());
     }
 
+    @Test
+    public void testGetNullDate() {
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> new TarefasModel("Quiz de VeV", "Responder quiz da aula 6", null));
+        assertEquals("Data de vencimento não pode ser nula!", thrown.getMessage());
+    }
+
 }

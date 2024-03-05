@@ -17,6 +17,9 @@ public class TarefasModel {
             throw new IllegalArgumentException("Descrição não pode ser nula!");
         }
         this.description = description;
+        if (date == null) {
+            throw new IllegalArgumentException("Data de vencimento não pode ser nula!");
+        }
         this.date = date;
 
     }
