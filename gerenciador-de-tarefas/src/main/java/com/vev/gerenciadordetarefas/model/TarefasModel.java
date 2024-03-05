@@ -57,4 +57,8 @@ public class TarefasModel {
         this.date = date;
     }
 
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
 }

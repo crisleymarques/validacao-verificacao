@@ -96,4 +96,11 @@ public class TarefasModelTests {
         assertEquals(date, tarefasModel.getDate());
     }
 
+    @Test
+    public void testSetPriority() {
+        Priority priority = Enum.valueOf(Priority.class, "Baixa");
+        tarefasModel.setPriority(priority);
+        assertEquals(priority, tarefasModel.getPriority());
+    }
+
 }
