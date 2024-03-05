@@ -7,9 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 
 import com.vev.gerenciadordetarefas.model.TarefasModel;
+
+import java.time.LocalDate;
 
 @RunWith(Suite.class)
 @SuiteClasses({})
@@ -19,7 +20,7 @@ public class TarefasModelTests {
 
     @BeforeEach
     public void startModel() {
-        this.tarefasModel = new TarefasModel("Quiz de VeV", "Responder quiz da aula 6");
+        this.tarefasModel = new TarefasModel("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now());
     }
 
     @Test
@@ -31,7 +32,7 @@ public class TarefasModelTests {
     public void testGetNullTitle() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel(null, "Responder quiz da aula 6"));
+                () -> new TarefasModel(null, "Responder quiz da aula 6", LocalDate.now()));
         assertEquals("Título não pode ser nulo!", thrown.getMessage());
     }
 
@@ -44,8 +45,13 @@ public class TarefasModelTests {
     public void testGetNullDescription() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel("Quiz de VeV", null));
+                () -> new TarefasModel("Quiz de VeV", null, LocalDate.now()));
         assertEquals("Descrição não pode ser nula!", thrown.getMessage());
+    }
+
+    @Test
+    public void testGetDate() {
+        assertEquals(LocalDate.now(), tarefasModel.getDate());
     }
 
 }
