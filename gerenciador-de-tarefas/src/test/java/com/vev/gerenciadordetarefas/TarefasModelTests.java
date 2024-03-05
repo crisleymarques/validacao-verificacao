@@ -19,7 +19,7 @@ public class TarefasModelTests {
 
     @BeforeEach
     public void startModel() {
-        this.tarefasModel = new TarefasModel("Quiz de VeV");
+        this.tarefasModel = new TarefasModel("Quiz de VeV", "Responder quiz da aula 6");
     }
 
     @Test
@@ -31,8 +31,13 @@ public class TarefasModelTests {
     public void testGetNullTitle() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel(null));
+                () -> new TarefasModel(null, "Responder quiz da aula 6"));
         assertEquals("Título não pode ser nulo!", thrown.getMessage());
+    }
+
+    @Test
+    public void testGetDescription() {
+        assertEquals("Responder quiz da aula 6", tarefasModel.getDescription());
     }
 
 }
