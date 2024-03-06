@@ -71,6 +71,7 @@ class ProcessadorDeBoletosTests {
 
 		assertFalse(this.fatura.isPaga());
 	}
+
 	@Test
 	@DisplayName("Processa boletos valor > total da fatura")
 	void testProcessaListaBoletosMaiorTotalFatura() {
@@ -85,5 +86,25 @@ class ProcessadorDeBoletosTests {
 		processadorBoletos.processaBoletos(this.boletos, this.fatura);
 
 		assertTrue(this.fatura.isPaga());
+	}
+
+	@Test
+	@DisplayName("Verifica geração de pagamentos por boleto")
+	void testVerificaGeracaoPagamentos() {
+		this.fatura.setValorTotal(1000.0);
+
+		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 700.0);
+		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 5000.0);
+
+		this.boletos.add(boleto1);
+		this.boletos.add(boleto2);
+
+		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(this.boletos, this.fatura);
+
+		assertEquals(this.boletos.size(), pagamentos.size());
+
+		for (Pagamento p : pagamentos) {
+			assertEquals(fatura.getId(), p.getIdFatura());
+		}
 	}
 }
