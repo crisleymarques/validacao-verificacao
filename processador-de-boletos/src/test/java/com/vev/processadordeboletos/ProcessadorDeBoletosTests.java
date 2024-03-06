@@ -37,7 +37,6 @@ class ProcessadorDeBoletosTests {
 		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(boletosVazio, this.fatura);
 
 		assertEquals(0, pagamentos.size());
-
 	}
 
 	@Test
@@ -45,11 +44,8 @@ class ProcessadorDeBoletosTests {
 	void testProcessaListaBoletosMenorTotalFatura() {
 		this.fatura.setValorTotal(1000.0);
 
-		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 100.0);
-		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 200.0);
-
-		this.boletos.add(boleto1);
-		this.boletos.add(boleto2);
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 5), 100.0));
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 15), 200.0));
 
 		processadorBoletos.processaBoletos(this.boletos, this.fatura);
 
@@ -61,15 +57,12 @@ class ProcessadorDeBoletosTests {
 	void testProcessaListaBoletosIgualTotalFatura() {
 		this.fatura.setValorTotal(1000.0);
 
-		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 500.0);
-		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 500.0);
-
-		this.boletos.add(boleto1);
-		this.boletos.add(boleto2);
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 5), 500.0));
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 15), 500.0));
 
 		processadorBoletos.processaBoletos(this.boletos, this.fatura);
 
-		assertFalse(this.fatura.isPaga());
+		assertTrue(this.fatura.isPaga());
 	}
 
 	@Test
@@ -77,11 +70,8 @@ class ProcessadorDeBoletosTests {
 	void testProcessaListaBoletosMaiorTotalFatura() {
 		this.fatura.setValorTotal(1000.0);
 
-		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 700.0);
-		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 5000.0);
-
-		this.boletos.add(boleto1);
-		this.boletos.add(boleto2);
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 5), 700.0));
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 15), 5000.0));
 
 		processadorBoletos.processaBoletos(this.boletos, this.fatura);
 
@@ -93,11 +83,8 @@ class ProcessadorDeBoletosTests {
 	void testVerificaGeracaoPagamentos() {
 		this.fatura.setValorTotal(1000.0);
 
-		Boleto boleto1 = new Boleto(LocalDate.of(2024, 3, 5), 700.0);
-		Boleto boleto2 = new Boleto(LocalDate.of(2024, 3, 15), 5000.0);
-
-		this.boletos.add(boleto1);
-		this.boletos.add(boleto2);
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 5), 700.0));
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 15), 5000.0));
 
 		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(this.boletos, this.fatura);
 
@@ -106,5 +93,20 @@ class ProcessadorDeBoletosTests {
 		for (Pagamento p : pagamentos) {
 			assertEquals(fatura.getId(), p.getIdFatura());
 		}
+	}
+	
+	@Test
+	@DisplayName("Valida comportamento esperado")
+	void testValidaComportamentoEsperado() {
+		this.fatura.setValorTotal(1500);
+
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 5), 500.0));
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 15), 400.0));
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 30), 600.0));
+
+		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(this.boletos, this.fatura);
+
+		assertEquals(this.boletos.size(), pagamentos.size());
+		assertTrue(this.fatura.isPaga());
 	}
 }
