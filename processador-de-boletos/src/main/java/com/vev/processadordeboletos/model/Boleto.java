@@ -3,6 +3,10 @@ package com.vev.processadordeboletos.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/** Um boleto contém o código do boleto, data, e valor pago.
+ * @autor Crisley Marques
+ * @since 05 mar 2024
+ */
 public class Boleto {
     private String codigo;
     private LocalDate data;
