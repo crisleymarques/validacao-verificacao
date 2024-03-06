@@ -5,6 +5,7 @@ import com.vev.gerenciadordetarefas.model.TarefasModel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TarefasServiceImpl implements TarefasService {
 
@@ -19,7 +20,8 @@ public class TarefasServiceImpl implements TarefasService {
         this.tarefas.add(tarefa);
     }
 
-    public void showTasksByOrder() {
+    public void showTasksByDate() {
+        Collections.sort(this.tarefas);
         for (TarefasModel tarefa : this.tarefas) {
             System.out.println(tarefa.toString());
         }

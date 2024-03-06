@@ -10,5 +10,5 @@ public interface TarefasService {
 
     public int size();
 
-    public void showTasksByOrder();
+    public void showTasksByDate();
 }

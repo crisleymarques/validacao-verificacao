@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-public class TarefasModel {
+public class TarefasModel implements Comparable<TarefasModel> {
 
     private Long id;
 
@@ -79,6 +79,10 @@ public class TarefasModel {
                 ", Data=" + this.getDate() +
                 ", Prioridade=" + this.getPriority() + '\'' +
                 '}';
+    }
+
+    public int compareTo(TarefasModel o) {
+        return this.getDate().compareTo(o.getDate());
     }
 
 }
