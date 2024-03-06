@@ -66,11 +66,16 @@ public class TarefasServiceImpl implements TarefasService {
     }
 
     public void removeTask(int id) {
+        boolean found = false;
         for (TarefasModel tarefa : this.tarefas) {
             if (tarefa.getId() == id) {
                 this.tarefas.remove(tarefa);
+                found = true;
                 break;
             }
+        }
+        if (!found) {
+            throw new IllegalArgumentException("Tarefa não encontrada!");
         }
     }
 

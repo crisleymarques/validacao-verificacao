@@ -1,6 +1,7 @@
 package com.vev.gerenciadordetarefas;
 
 import com.vev.gerenciadordetarefas.model.Priority;
+import com.vev.gerenciadordetarefas.model.TarefasModel;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -68,4 +69,15 @@ public class TarefasServiceImplTests {
         assertEquals(0, tarefasService.size());
     }
 
+    @Test
+    public void testRemoveTaskException() {
+        int id = tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[2]);
+
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> tarefasService.removeTask(10));
+        assertEquals("Tarefa não encontrada!", thrown.getMessage());
+
+        assertEquals(1, tarefasService.size());
+    }
 }
