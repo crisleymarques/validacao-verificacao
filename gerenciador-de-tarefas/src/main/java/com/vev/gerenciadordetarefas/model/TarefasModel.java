@@ -1,13 +1,26 @@
 package com.vev.gerenciadordetarefas.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class TarefasModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
 
     private String title;
     private String description;
     private LocalDate date;
     private Priority priority;
+
+    public TarefasModel() {
+    }
 
     public TarefasModel(String title, String description, LocalDate date, Priority priority) {
         if (title == null) {
@@ -43,6 +56,10 @@ public class TarefasModel {
 
     public Priority getPriority() {
         return this.priority;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     public void setTitle(String title) {
