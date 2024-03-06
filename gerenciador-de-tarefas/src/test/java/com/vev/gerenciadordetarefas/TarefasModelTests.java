@@ -21,7 +21,7 @@ public class TarefasModelTests {
 
     @BeforeEach
     public void startModel() {
-        this.tarefasModel = new TarefasModel("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
+        this.tarefasModel = new TarefasModel(0,"Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class TarefasModelTests {
     public void testGetNullTitle() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel(null, "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]));
+                () -> new TarefasModel(1, null, "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]));
         assertEquals("Título não pode ser nulo!", thrown.getMessage());
     }
 
@@ -46,7 +46,7 @@ public class TarefasModelTests {
     public void testGetNullDescription() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel("Quiz de VeV", null, LocalDate.now(), Priority.values()[0]));
+                () -> new TarefasModel(2, "Quiz de VeV", null, LocalDate.now(), Priority.values()[0]));
         assertEquals("Descrição não pode ser nula!", thrown.getMessage());
     }
 
@@ -59,7 +59,7 @@ public class TarefasModelTests {
     public void testGetNullDate() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel("Quiz de VeV", "Responder quiz da aula 6", null, Priority.values()[0]));
+                () -> new TarefasModel(3, "Quiz de VeV", "Responder quiz da aula 6", null, Priority.values()[0]));
         assertEquals("Data de vencimento não pode ser nula!", thrown.getMessage());
     }
 
@@ -73,7 +73,7 @@ public class TarefasModelTests {
     public void testGetNullPriority() {
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
-                () -> new TarefasModel("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), null));
+                () -> new TarefasModel(4, "Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), null));
         assertEquals("Prioridade não pode ser nula!", thrown.getMessage());
     }
 

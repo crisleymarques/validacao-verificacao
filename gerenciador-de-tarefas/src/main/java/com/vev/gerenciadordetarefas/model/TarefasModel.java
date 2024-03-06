@@ -8,8 +8,7 @@ import java.time.LocalDate;
 
 public class TarefasModel implements Comparable<TarefasModel> {
 
-    private Long id;
-
+    private int id;
 
     private String title;
     private String description;
@@ -19,7 +18,7 @@ public class TarefasModel implements Comparable<TarefasModel> {
     public TarefasModel() {
     }
 
-    public TarefasModel(String title, String description, LocalDate date, Priority priority) {
+    public TarefasModel(int id, String title, String description, LocalDate date, Priority priority) {
         if (title == null) {
             throw new IllegalArgumentException("Título não pode ser nulo!");
         }
