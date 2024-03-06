@@ -109,4 +109,18 @@ class ProcessadorDeBoletosTests {
 		assertEquals(this.boletos.size(), pagamentos.size());
 		assertTrue(this.fatura.isPaga());
 	}
+	@Test
+	@DisplayName("Processa boletos com valor nulo")
+	void testProcessaBoletosNull() {
+		this.fatura.setValorTotal(1500);
+
+		this.boletos.add(null);
+		this.boletos.add(null);
+		this.boletos.add(new Boleto(LocalDate.of(2024, 3, 30), 600.0));
+
+		List<Pagamento> pagamentos = processadorBoletos.processaBoletos(this.boletos, this.fatura);
+
+		assertNotEquals(this.boletos.size(), pagamentos.size());
+		assertFalse(this.fatura.isPaga());
+	}
 }

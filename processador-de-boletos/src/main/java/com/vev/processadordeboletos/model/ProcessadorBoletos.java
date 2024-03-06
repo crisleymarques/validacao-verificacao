@@ -15,11 +15,13 @@ public class ProcessadorBoletos {
         List<Pagamento> pagamentoList = new ArrayList<>();
         double soma = 0;
         for (Boleto b : boletos) {
-            soma += b.getValorPago();
-            pagamentoList.add(new Pagamento(b.getValorPago(),
-                                            b.getData(),
-                                            TipoPagamento.BOLETO,
-                                            fatura.getId()));
+            if (b != null) {
+                soma += b.getValorPago();
+                pagamentoList.add(new Pagamento(b.getValorPago(),
+                        b.getData(),
+                        TipoPagamento.BOLETO,
+                        fatura.getId()));
+            }
         }
         if (soma >= fatura.getValorTotal()) {
             fatura.setPaga(true);
