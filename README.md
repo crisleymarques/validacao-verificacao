@@ -7,21 +7,23 @@
 	Atividades desenvolvidas durante a disciplina de Validação e Verificação de Software no período 2023.2 na UFCG
 </p>
 
+<div align="center">
+	
 [![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/)
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/pt-BR/)
 [![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 [![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 [![Junit]( https://img.shields.io/badge/Junit-25A162?style=for-the-badge&logo=junit5&logoColor=white)](https://junit.org/junit5/)
-![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)
-
+ 
+</div>
 
 <p align="center">
-  <a href="#sobre-a-disciplina">Sobre</a> •
+  <a href="#sobre-a-disciplina-">Sobre</a> •
   <a href="#especificações-">Especificações</a> •
-  <a href="#exercicios-">Exercícios</a> •
+  <a href="#exercícios-">Exercícios</a> •
   <a href="#licença-">Licença</a> •
-  <a href="#autores">Autores</a>
+  <a href="#autores-">Autores</a>
 </p>
 
 ## Sobre a disciplina 📌
@@ -67,25 +69,10 @@ Deve-se implementar um sistema para auxiliar os usuários no acompanhamento e or
 
 ## Exercícios 
 #### 2 - Test Driven Development (TDD) 🧪
-[Especificação do exercício.](https://docs.google.com/document/d/14d-A6nhw6KBR0zRqH85oNRkDGlSUOKQ73_YKYMgvjRQ/edit?usp=sharing)
+- [Especificação](https://docs.google.com/document/d/14d-A6nhw6KBR0zRqH85oNRkDGlSUOKQ73_YKYMgvjRQ/edit?usp=sharing) do exercício.
 
 ---
 
 ## Autores
-<div style="display:flex; justify-content:space-evenly">
-  <div>
-    <a href="https://github.com/crisleymarques">
-      <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/44072771?v=4" width="100px;" alt="">
-      <br>
-      <sub><b>Crisley Marques</b></sub>
-    </a> 
-  </div>
-
-  <div>
-    <a href="https://github.com/igor-correia">
-      <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/64588244?v=4" width="100px;" alt="">
-      <br>
-      <sub><b>Igor Correia</b></sub>
-    </a> 
-  </div>
-</div>
+| [<img src="https://avatars.githubusercontent.com/u/44072771?s=400&u=b17d945fa43dec67a69d1cb11e2f23a7b2e0ad95&v=4" width="120px;"/><br /><sub><b>Crisley Marques</b></sub>](https://github.com/crisleymarques) <br/> | [<img src="https://avatars.githubusercontent.com/u/64588244?v=4" width="120px;" /><br /><sub><b>Igor Correia</b></sub>](https://github.com/igor-correia) <br/> | 
+| :---: | :---: | 
