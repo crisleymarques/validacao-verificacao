@@ -6,21 +6,21 @@ import com.vev.gerenciadordetarefas.model.TarefasModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TarefasServiceImpl implements TarefasService {
 
     private ArrayList<TarefasModel> tarefas;
-    private int id = 0;
+    private AtomicInteger id = new AtomicInteger(0);
 
     public TarefasServiceImpl() {
         this.tarefas = new ArrayList<TarefasModel>();
     }
 
     public int addTask(String titulo, String descricao, LocalDate data, Priority prioridade) {
-        TarefasModel tarefa = new TarefasModel(id, titulo, descricao, data, prioridade);
+        TarefasModel tarefa = new TarefasModel(id.getAndIncrement(), titulo, descricao, data, prioridade);
         this.tarefas.add(tarefa);
-        id++;
-        return id - 1;
+        return id.get() - 1;
     }
 
     public void showTasksByDate() {
