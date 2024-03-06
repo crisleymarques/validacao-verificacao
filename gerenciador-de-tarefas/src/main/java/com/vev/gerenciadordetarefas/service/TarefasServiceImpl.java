@@ -16,10 +16,11 @@ public class TarefasServiceImpl implements TarefasService {
         this.tarefas = new ArrayList<TarefasModel>();
     }
 
-    public void addTask(String titulo, String descricao, LocalDate data, Priority prioridade) {
+    public int addTask(String titulo, String descricao, LocalDate data, Priority prioridade) {
         TarefasModel tarefa = new TarefasModel(id, titulo, descricao, data, prioridade);
         this.tarefas.add(tarefa);
         id++;
+        return id - 1;
     }
 
     public void showTasksByDate() {
@@ -62,6 +63,15 @@ public class TarefasServiceImpl implements TarefasService {
         tarefa.setDescription(descricao);
         tarefa.setDate(data);
         tarefa.setPriority(prioridade);
+    }
+
+    public void removeTask(int id) {
+        for (TarefasModel tarefa : this.tarefas) {
+            if (tarefa.getId() == id) {
+                this.tarefas.remove(tarefa);
+                break;
+            }
+        }
     }
 
     public int size() {

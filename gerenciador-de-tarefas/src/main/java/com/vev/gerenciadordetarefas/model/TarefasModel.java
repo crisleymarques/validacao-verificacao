@@ -54,6 +54,10 @@ public class TarefasModel implements Comparable<TarefasModel> {
         return this.priority;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
