@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import com.vev.gerenciadordetarefas.service.TarefasServiceImpl;
 
 import java.time.LocalDate;
-import java.time.Month;
 
 @RunWith(Suite.class)
 @SuiteClasses({})
@@ -29,5 +28,12 @@ public class TarefasServiceImplTests {
     public void testAddTask() {
         tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
         assertEquals(1, tarefasService.size());
+    }
+
+    @Test
+    public void testShowTasksByOrder() {
+        tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
+        tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.now(), Priority.values()[1]);
+        tarefasService.showTasksByOrder();
     }
 }

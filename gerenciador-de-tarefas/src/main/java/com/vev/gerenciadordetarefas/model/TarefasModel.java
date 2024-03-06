@@ -6,11 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity
 public class TarefasModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
@@ -58,10 +55,6 @@ public class TarefasModel {
         return this.priority;
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -76,6 +69,16 @@ public class TarefasModel {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "Título=" + this.getTitle() +
+                ", Descrição=" + this.getDescription() +
+                ", Data=" + this.getDate() +
+                ", Prioridade=" + this.getPriority() + '\'' +
+                '}';
     }
 
 }

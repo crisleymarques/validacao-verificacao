@@ -19,7 +19,14 @@ public class TarefasServiceImpl implements TarefasService {
         this.tarefas.add(tarefa);
     }
 
+    public void showTasksByOrder() {
+        for (TarefasModel tarefa : this.tarefas) {
+            System.out.println(tarefa.toString());
+        }
+    }
+
     public int size() {
         return this.tarefas.size();
     }
+
 }
