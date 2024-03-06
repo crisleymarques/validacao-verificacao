@@ -26,7 +26,7 @@ class ProcessadorDeBoletosTests {
 	public void setUp() {
 		this.processadorBoletos = new ProcessadorBoletos();
 		this.boletos = new ArrayList<>();
-		this.fatura = new Fatura(0, "Fulano de Tal");
+		this.fatura = new Fatura(LocalDate.of(2024,1,1),0, "Fulano de Tal");
 	}
 
 	@Test
