@@ -79,6 +79,15 @@ public class TarefasServiceImpl implements TarefasService {
         }
     }
 
+    public TarefasModel getTask(int id) {
+        for (TarefasModel tarefa : this.tarefas) {
+            if (tarefa.getId() == id) {
+                return tarefa;
+            }
+        }
+        throw new IllegalArgumentException("Tarefa não encontrada!");
+    }
+
     public int size() {
         return this.tarefas.size();
     }
