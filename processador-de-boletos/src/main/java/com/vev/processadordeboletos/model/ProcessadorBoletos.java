@@ -16,12 +16,18 @@ public class ProcessadorBoletos {
         double soma = 0;
         for (Boleto b : boletos) {
             if (b != null) {
+                if (b.getValorPago() < 0 ) {
+                    throw new IllegalArgumentException("Boleto não pode ter valor negativo!");
+                }
                 soma += b.getValorPago();
                 pagamentoList.add(new Pagamento(b.getValorPago(),
                         b.getData(),
                         TipoPagamento.BOLETO,
                         fatura.getId()));
             }
+        }
+        if (fatura.getValorTotal() < 0) {
+            throw new IllegalArgumentException("Valor Total não pode ser negativo!");
         }
         if (soma >= fatura.getValorTotal()) {
             fatura.setPaga(true);
