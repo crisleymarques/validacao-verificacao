@@ -1,7 +1,6 @@
 package com.vev.gerenciadordetarefas;
 
 import com.vev.gerenciadordetarefas.model.Priority;
-import com.vev.gerenciadordetarefas.model.TarefasModel;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -28,30 +27,30 @@ public class TarefasServiceImplTests {
 
     @Test
     public void testAddTask() {
-        int id = tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
+        tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
         assertEquals(1, tarefasService.size());
     }
 
     @Test
     public void testShowTasksByOrder() {
-        int id1 = tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
-        int id2 = tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.now(), Priority.values()[1]);
+        tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.now(), Priority.values()[0]);
+        tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.now(), Priority.values()[1]);
         tarefasService.showTasksByDate();
     }
 
     @Test
     public void testShowTasksByDate() {
-        int id1 = tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[0]);
-        int id2 = tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.of(2024, Month.MARCH, 2), Priority.values()[1]);
-        int id3 = tarefasService.addTask("Quiz de Tc", "Responder quiz da aula 7", LocalDate.of(2024, Month.MARCH, 10), Priority.values()[2]);
+        tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[0]);
+        tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.of(2024, Month.MARCH, 2), Priority.values()[1]);
+        tarefasService.addTask("Quiz de Tc", "Responder quiz da aula 7", LocalDate.of(2024, Month.MARCH, 10), Priority.values()[2]);
         tarefasService.showTasksByDate();
     }
 
     @Test
     public void testShowTasksByPriority() {
-        int id1 = tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[2]);
-        int id2 = tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.of(2024, Month.MARCH, 2), Priority.values()[0]);
-        int id3 = tarefasService.addTask("Quiz de Tc", "Responder quiz da aula 7", LocalDate.of(2024, Month.MARCH, 10), Priority.values()[1]);
+        tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[2]);
+        tarefasService.addTask("Quiz de Percepção", "Responder quiz da aula 8", LocalDate.of(2024, Month.MARCH, 2), Priority.values()[0]);
+        tarefasService.addTask("Quiz de Tc", "Responder quiz da aula 7", LocalDate.of(2024, Month.MARCH, 10), Priority.values()[1]);
         tarefasService.showTasksByPriority();
     }
 
@@ -71,7 +70,7 @@ public class TarefasServiceImplTests {
 
     @Test
     public void testRemoveTaskException() {
-        int id = tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[2]);
+        tarefasService.addTask("Quiz de VeV", "Responder quiz da aula 6", LocalDate.of(2024, Month.MARCH, 8), Priority.values()[2]);
 
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
