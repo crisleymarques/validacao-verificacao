@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Fatura</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.vev.processadordeboletos.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Fatura (com.vev.processadordeboletos.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Fatura</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.vev.processadordeboletos.model;
+&nbsp;
+&nbsp;import java.time.LocalDate;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;/** Uma fatura contém data, valor total e nome do cliente.
+&nbsp; * @autor Crisley Marques
+&nbsp; * @since 05 mar 2024
+&nbsp; */
+&nbsp;public class Fatura {
+&nbsp;    private String id;
+&nbsp;    private LocalDate data;
+&nbsp;    private double valorTotal;
+&nbsp;    private String nomeCliente;
+&nbsp;    private boolean isPaga;
+&nbsp;
+<b class="fc">&nbsp;    public Fatura(LocalDate data, double valorTotal, String nomeCliente) {</b>
+<b class="fc">&nbsp;        this.id = UUID.randomUUID().toString();</b>
+<b class="fc">&nbsp;        this.data = data;</b>
+<b class="fc">&nbsp;        this.valorTotal = valorTotal;</b>
+<b class="fc">&nbsp;        this.nomeCliente = nomeCliente;</b>
+<b class="fc">&nbsp;        this.isPaga = false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getId() {
+<b class="fc">&nbsp;        return this.id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public LocalDate getData() {
+<b class="fc">&nbsp;        return data;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setData(LocalDate data) {
+<b class="fc">&nbsp;        this.data = data;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getValorTotal() {
+<b class="fc">&nbsp;        return valorTotal;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setValorTotal(double valorTotal) {
+<b class="fc">&nbsp;        this.valorTotal = valorTotal;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getNomeCliente() {
+<b class="fc">&nbsp;        return nomeCliente;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setNomeCliente(String nomeCliente) {
+<b class="fc">&nbsp;        this.nomeCliente = nomeCliente;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isPaga() {
+<b class="fc">&nbsp;        return isPaga;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPaga(boolean paga) {
+<b class="fc">&nbsp;        isPaga = paga;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-03 20:04</div>
+</div>
+</body>
+</html>
