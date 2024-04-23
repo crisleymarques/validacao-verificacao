@@ -22,8 +22,7 @@ describe('countries', () => {
     // await driver.sleep(1000);
   });
 
-  // Remove .only and implement others test cases!
-  it.only('add and remove province in United Kingdom', async () => {
+  it('add and remove province in United Kingdom', async () => {
     // Click in countries in side menu
     await driver.findElement(By.linkText('Countries')).click();
 
@@ -64,13 +63,97 @@ describe('countries', () => {
     assert(bodyTextAfterRemove.includes('Country has been successfully updated.'));
   });
 
-  it('test case 2', async () => {
-    // Implement your test case 2 code here
+  it('create a new country', async () => {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText('Countries')).click();
+    
+    // Click in create button
+    await driver.findElement(By.css('*[class^="ui right floated buttons"]')).click();
+
+    // Define country
+    let dropdown = await driver.findElement(By.id('sylius_country_code'));
+    await dropdown.findElement(By.xpath("//option[. = 'Angola']")).click();
+
+    // create province
+    await driver.findElement(By.linkText('Add province')).click();
+  
+    // Defines the code of the province
+    await driver.findElement(By.id('sylius_country_provinces_0_code')).sendKeys('AG-LD');
+    await driver.findElement(By.id('sylius_country_provinces_0_name')).sendKeys('Luanda');
+    await driver.findElement(By.id('sylius_country_provinces_0_abbreviation')).sendKeys('LD');
+
+    // Click in create button
+    await driver.findElement(By.css('*[class^="ui labeled icon primary button"]')).click();
+
+    // Assert that association type has been created
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('Country has been successfully created.'));
   });
 
-  it('test case 3', async () => {
-    // Implement your test case 3 code here
+  it('enable and disable a country', async () => {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText('Countries')).click();
+
+    // Select only enabled countries
+    let dropdown = await driver.findElement(By.id('criteria_enabled'));
+    await dropdown.findElement(By.xpath("//option[. = 'Yes']")).click();
+
+    // Click in filter blue button
+    await driver.findElement(By.css('*[class^="ui blue labeled icon button"]')).click();
+    
+    // Click in edit of the last country
+    const buttons = await driver.findElements(By.css('*[class^="ui labeled icon button "]'));
+    await buttons[buttons.length - 1].click();
+
+    // Click in enable button and Save changes
+    let checkbox = await driver.findElement(By.id('sylius_country_enabled'));
+    await driver.executeScript("arguments[0].click();", checkbox);
+    await driver.findElement(By.id('sylius_save_changes_button')).click();
+
+    // Assert that country has been updated
+    const bodyTextUnchecked = await driver.findElement(By.css('body')).getText();
+    assert(bodyTextUnchecked.includes('Country has been successfully updated.'));
+
+    // Click in disable button and Save changes
+    let checkbox2 = await driver.findElement(By.id('sylius_country_enabled'));
+    await driver.executeScript("arguments[0].click();", checkbox2);
+    await driver.findElement(By.id('sylius_save_changes_button')).click();
+
+    // Assert that country has been updated
+    const bodyTextChecked = await driver.findElement(By.css('body')).getText();
+    assert(bodyTextChecked.includes('Country has been successfully updated.'));
   });
 
-  // Implement the remaining test cases in a similar manner
+  it('check filter "Code" by "Not contains"', async () => {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText('Countries')).click();
+
+    // Type to search a specify country
+    await driver.findElement(By.id('criteria_code_value')).sendKeys('AO');
+    let dropdown = await driver.findElement(By.id('criteria_code_type'));
+    await dropdown.findElement(By.xpath("//option[. = 'Not contains']")).click();
+
+    // Click in filter blue button
+    await driver.findElement(By.css('*[class^="ui blue labeled icon button"]')).click();
+
+    // Assert that country has been updated
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(!bodyText.includes('Angola'));
+  });
+
+  it('check filter by enabled countries', async () => {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText('Countries')).click();
+
+    // Select only enabled countries
+    let dropdown = await driver.findElement(By.id('criteria_enabled'));
+    await dropdown.findElement(By.xpath("//option[. = 'Yes']")).click();
+
+    // Click in filter blue button
+    await driver.findElement(By.css('*[class^="ui blue labeled icon button"]')).click();
+
+    // Assert that country has been updated
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('Angola'));
+  });
 });
