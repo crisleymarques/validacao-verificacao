@@ -156,4 +156,141 @@ describe('countries', () => {
     const bodyText = await driver.findElement(By.css('body')).getText();
     assert(bodyText.includes('Angola'));
   });
+
+  it('check filter "Code" by "Contains"', async function() {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText("Countries")).click()
+
+    // Type to search a specify country
+    await driver.findElement(By.id("criteria_code_value")).click()
+    await driver.findElement(By.id("criteria_code_value")).sendKeys("b")
+
+    // Click in filter blue button
+    await driver.findElement(By.css(".blue")).click()
+
+    // Assert that country has been found
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('Brazil'));
+  })
+
+  it('Add provincies with same name', async function() {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText("Countries")).click()
+
+    // Selects Brazil
+    await driver.findElement(By.id("criteria_code_value")).click()
+    await driver.findElement(By.id("criteria_code_value")).sendKeys("br")
+    await driver.findElement(By.css(".blue")).click()
+    await driver.findElement(By.css(".pencil")).click()
+
+    // Adds a new province with the same information as the existing one
+    await driver.findElement(By.linkText("Add province")).click()
+    await driver.findElement(By.id("sylius_country_provinces_1_code")).click()
+    await driver.findElement(By.id("sylius_country_provinces_1_code")).sendKeys("BR-PB")
+    await driver.findElement(By.id("sylius_country_provinces_1_name")).click()
+    await driver.findElement(By.id("sylius_country_provinces_1_name")).sendKeys("Paraíba")
+    await driver.findElement(By.id("sylius_country_provinces_1_abbreviation")).click()
+    await driver.findElement(By.id("sylius_country_provinces_1_abbreviation")).sendKeys("PB")
+    await driver.findElement(By.id("sylius_save_changes_button")).click()
+
+    // Assert that provincie hasn't been created
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('This form contains errors.'));
+  })
+
+  it('check filter "Code" by "Start with"', async function() {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText("Countries")).click()
+
+    // Type to search countries that start with "b"
+    await driver.findElement(By.id("criteria_code_type")).click()
+    {
+      const dropdown = await driver.findElement(By.id("criteria_code_type"))
+      await dropdown.findElement(By.xpath("//option[. = 'Starts with']")).click()
+    }
+    await driver.findElement(By.id("criteria_code_value")).click()
+    await driver.findElement(By.id("criteria_code_value")).sendKeys("b")
+
+    // Click in filter blue button
+    await driver.findElement(By.css(".blue")).click()
+
+    // Assert that country has been found
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('Brazil'));
+  })
+
+  it('check filter with empty result', async function() {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText("Countries")).click()
+
+    // Select Empty filter
+    await driver.findElement(By.id("criteria_code_type")).click()
+    {
+      const dropdown = await driver.findElement(By.id("criteria_code_type"))
+      await dropdown.findElement(By.xpath("//option[. = 'Empty']")).click()
+    }
+
+    // Click in filter blue button
+    await driver.findElement(By.css(".blue")).click()
+
+    // Assert that there are no results
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('There are no results to display'));
+  })
+
+  it('check filter "Code" by "Contains" and enabled countries', async function() {
+    // Click in countries in side menu
+    await driver.findElement(By.linkText("Countries")).click()
+
+    // Type to search a specify country
+    await driver.findElement(By.id("criteria_code_value")).click()
+    await driver.findElement(By.id("criteria_code_value")).sendKeys("b")
+
+    // Click in filter blue button
+    await driver.findElement(By.css(".blue")).click()
+    
+    // Select Brazil
+    await driver.findElement(By.css(".search:nth-child(1)")).click()
+    await driver.findElement(By.css(".pencil")).click()
+
+    // Click in enable button and Save changes
+    await driver.findElement(By.css(".toggle > .required")).click()
+    await driver.findElement(By.id("sylius_save_changes_button")).click()
+    await driver.findElement(By.css(".section:nth-child(3)")).click()
+
+    // Check for countries that contains 'b' and are enabled
+    await driver.findElement(By.id("criteria_code_value")).click()
+    await driver.findElement(By.id("criteria_code_value")).sendKeys("b")
+    await driver.findElement(By.id("criteria_enabled")).click()
+    {
+      const dropdown = await driver.findElement(By.id("criteria_enabled"))
+      await dropdown.findElement(By.xpath("//option[. = 'No']")).click()
+    }
+
+    // Click in filter blue button
+    await driver.findElement(By.css(".blue")).click()
+
+    // Assert that country has been found
+    const bodyText = await driver.findElement(By.css('body')).getText();
+    assert(bodyText.includes('Brazil'));
+
+    // Click in countries in side menu
+    await driver.findElement(By.linkText("Countries")).click()
+
+    // Type to search a specify country
+    await driver.findElement(By.id("criteria_code_value")).click()
+    await driver.findElement(By.id("criteria_code_value")).sendKeys("b")
+
+    // Click in filter blue button
+    await driver.findElement(By.css(".blue")).click()
+    
+    // Select Brazil
+    await driver.findElement(By.css(".search:nth-child(1)")).click()
+    await driver.findElement(By.css(".pencil")).click()
+
+    // Click in enable button and Save changes
+    await driver.findElement(By.css(".toggle > .required")).click()
+    await driver.findElement(By.id("sylius_save_changes_button")).click()
+    await driver.findElement(By.css(".section:nth-child(3)")).click()
+  })
 });

@@ -129,4 +129,108 @@ describe('countries', () => {
     // Assert that country has been updated
     cy.get('body').should('not.contain', 'Brazil');
   });
+
+  it('check filter "Code" by "Contains"', function() {
+    // Click in countries in side menu
+    cy.contains('Countries').click();
+  
+    // Type to search a specify country
+    cy.get("#criteria_code_value").click().type("b");
+  
+    // Click in filter blue button
+    cy.get(".blue").click();
+  
+    // Assert that country has been found
+    cy.get('body').should('contain', 'Brazil');
+  });
+
+  it('Add provincies with same name', function() {
+    // Click in countries in side menu
+    cy.contains('Countries').click();
+  
+    // Selects Brazil
+    cy.get("#criteria_code_value").click().type("br");
+    cy.get(".blue").click();
+    cy.get(".pencil").click();
+  
+    // Adds a new province with the same information as the existing one
+    cy.contains('Add province').click();
+    cy.get("#sylius_country_provinces_1_code").click().type("BR-PB");
+    cy.get("#sylius_country_provinces_1_name").click().type("Paraíba");
+    cy.get("#sylius_country_provinces_1_abbreviation").click().type("PB");
+    cy.get("#sylius_save_changes_button").click();
+  
+    // Assert that province hasn't been created
+    cy.get('body').should('contain', 'This form contains errors.');
+  });
+
+  it('check filter "Code" by "Start with"', function() {
+    // Click in countries in side menu
+    cy.contains('Countries').click();
+  
+    // Type to search countries that start with "b"
+    cy.get("#criteria_code_value").type("b");
+    cy.get("select#criteria_code_type").select('Starts with');
+    
+    // Click in filter blue button
+    cy.get(".blue").click();
+  
+    // Assert that country has been found
+    cy.get('body').should('contain', 'Brazil');
+  });
+
+  it('check filter with empty result', function() {
+    // Click in countries in side menu
+    cy.contains('Countries').click();
+  
+    // Select Empty filter
+    cy.get("select#criteria_code_type").select('Empty');
+  
+    // Click in filter blue button
+    cy.get(".blue").click();
+  
+    // Assert that there are no results
+    cy.get('body').should('contain', 'There are no results to display');
+  });
+
+  it('check filter "Code" by "Contains" and enabled countries', function() {
+    // Click in countries in side menu
+    cy.contains('Countries').click();
+  
+    // Selects Brazil
+    cy.get("#criteria_code_value").click().type("br");
+    cy.get(".blue").click();
+    cy.get(".pencil").click();
+  
+    // Click in enable button and Save changes
+    cy.get(".toggle > .required").click();
+    cy.get("#sylius_save_changes_button").click();
+    cy.get(".section:nth-child(3)").click();
+  
+    // Check for countries that start with 'b' and are enabled
+    cy.get("#criteria_code_value").type("b");
+    cy.get("select#criteria_code_type").select('Starts with');
+    
+    // cy.get("#criteria_enabled").click();
+    cy.get("select#criteria_enabled").select('No');
+  
+    // Click in filter blue button
+    cy.get(".blue").click();
+  
+    // Assert that country has been found
+    cy.get('body').should('contain', 'Brazil');
+  
+    // Click in countries in side menu
+    cy.contains('Countries').click();
+  
+    // Selects Brazil
+    cy.get("#criteria_code_value").click().type("br");
+    cy.get(".blue").click();
+    cy.get(".pencil").click();
+  
+    // Click in enable button and Save changes
+    cy.get(".toggle > .required").click();
+    cy.get("#sylius_save_changes_button").click();
+    cy.get(".section:nth-child(3)").click();
+  });
 });
